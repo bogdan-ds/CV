@@ -1,0 +1,152 @@
+% - - - - - - - - - - -
+% License: MIT
+% - - - - - - - - - - -
+
+\documentclass[12pt]{article}
+
+\title{Curriculum Vitae}
+\author{Bogdan Despotov}
+
+\usepackage[english]{babel}
+\usepackage{verbatim}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{geometry}
+\usepackage{ifthen}
+\usepackage{titlesec}
+\usepackage{enumitem}
+
+% Font & encoding
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+% Set layout and margins (H, V)
+\geometry{letterpaper, margin={0.5in, 0.5in}}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Clear headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Format overrides
+\titleformat{\section}{\scshape \Large \vspace{-5pt}}{}{0em}{}[\titlerule]
+
+% Commands
+
+\newcommand*{\header}[4]{
+    \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+        \hspace{-5pt}\textbf{\LARGE{#1}} & \href{mailto:#2}{#2}\\
+        \href{#3}{#3} & \href{tel:#4}{#4}
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand*{\workSectionStart}[1]{\section{#1}\begin{itemize}[label={}, leftmargin=*]}
+
+    \newcommand*{\workItem}[4]{\item
+        \begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
+            \textbf{\large{#1}} & {#2}\\
+            \textit{#3} & \textit{#4}
+        \end{tabular*}
+    }
+
+    \newcommand{\workDataStart}{\begin{itemize}[label=$\circ$]\vspace{-4pt}}
+        \newcommand*{\workDataItem}[2][]{\item\ifthenelse{\equal{#1}{}}{}{\textbf{#1:}} #2}
+    \newcommand{\workDataEnd}{\end{itemize}}
+
+\newcommand*{\workSectionEnd}{\end{itemize}}
+
+
+\begin{document}
+
+\header
+    {Bogdan Despotov}
+    {despotov@gmail.com}
+    {https://github.com/bogdan-ds}
+    {+359 899106450}
+
+
+\workSectionStart{Experience}
+    \workItem{Cognyte}{Bulgaria (remote)}
+        {Machine Learning Engineer}{Mar. 2022 - Apr. 2023}
+        \workDataStart
+            \workDataItem[Ownership]{Responsible for all ML components: bug fixing, performance improvement, troubleshooting.}
+            \workDataItem[Productionize]{Put to production as microservices ML models developed internally. Stack: Kubernetes, Helm, Flask, BentoML, GCP.}
+            \workDataItem[Research]{Create PoCs for prospect client by fine-tuning state of the art ML models: YOLO, Whisper, easyOCR.}
+            \workDataItem[Design]{Create high level designs for components that interact with the ML microservices, present to development teams and
+                support their implementation efforts.}
+        \workDataEnd
+
+    \workItem{CloudSigma}{Sofia, Bulgaria (hybrid)}
+        {Software Engineer}{Mar. 2016 - Mar. 2022}
+        \workDataStart
+            \workDataItem[Develop]{Worked on a proprietary cloud stack leveraging KVM, QEMU for virtualization. Included a customer facing API serving hunderds of thousands of requests daily.
+                Leveraging a Python tech stack including: Django, Celery, Tastypie, unittest, Flask and more.}
+            \workDataItem[Implementations]{Successfully implemented a number of new features including support for Intel SGX, GPUs, VMWare virtualization, SAML authentication.
+                Helped reduce technical debt by refactoring legacy code, improving test coverage and transitioning from Python 2 to Python 3.}
+            \workDataItem[EC projects]{Lead the technical involvement of the company in several project within the Horizon2020 and RISE frameworks.
+                Efforts include software development, documentation and project management.}
+        \workDataEnd
+
+    \workItem{Hostway Corporation}{Sofia, Bulgaria}
+        {Server support and administration, NOC monitoring}{Nov. 2011 - Jan. 2013}
+        \workDataStart
+            \workDataItem[Administration]{Within the product line of fully managed Linux and Windows servers.}
+            \workDataItem[NOC]{Monitoring the global company network and servers and fixing issues as they arise.}
+        \workDataEnd
+
+\workSectionEnd
+
+
+\workSectionStart{Education}
+    \workItem{Sofia University "Kliment Ohridski"}{Sofia, Bulgaria}
+        {Philosophy; Did not graduate}{Sept. 2014 - Sept. 2018}
+\workSectionEnd
+
+\workSectionStart{Projects}
+    \workItem{\href{https://www.ditas-project.eu/}{DITAS}}{}
+        {Data-intensive applications Improvement by moving data and compute in cloud}{Work package leader}
+    \workItem{\href{https://project-cola.eu/}{COLA}}{}
+        {Cloud Orchestration at the Level of Application}{Work package leader}
+    \workItem{\href{https://www.securecloudproject.eu/}{SecureCloud}}{}
+        {Secure Big Data Processing in Untrusted Clouds}{Part of consortium}
+        \workDataStart
+            \workDataItem[Publication Co-Author]{\href{https://ieeexplore.ieee.org/document/8513718}{Secure and Scalable Key Value Storage for Managing Big Data in
+                Smart Cities using Intel SGX. }}
+        \workDataEnd
+    \workItem{\href{https://www.secincore.eu/}{SecInCore}}{}
+        {Secure Dynamic Cloud based on Pan-European Disaster Inventory}{Part of consortium}
+        \workDataStart
+            \workDataItem[Publication Co-Author]{\href{https://ieeexplore.ieee.org/document/7934747}{Cloud-based semantic services for pan-European emergency preparation and planning}}
+        \workDataEnd
+    \workItem{\href{https://www.seo-dwarf.eu/}{SEO-DWARF}}{}
+        {Semantic EO Data Web Alert and Retrieval Framework}{Part of consortium}
+
+\workSectionEnd
+
+\workSectionStart{Hobby Projects}
+    \workItem{Logtrucks}{\href{https://github.com/bogdan-ds/logging}{Code}}
+        {Logging trucks and license plates detection in the wild.}{}
+        \workDataStart
+            \workDataItem[Dataset]{Dataset of logs on trucks and Bulgarian license plates.}
+            \workDataItem[Purpose]{To detect logging trucks and their license plates in the wild.}
+            \workDataItem[Method]{Fine-tuned YOLOv7 and easyOCR on the datasets.}
+        \workDataEnd
+    \workItem{Bulgarian news comments dataset.}{\href{https://github.com/bogdan-ds/dnesbg\_dataset}{Code}}
+        {Application to extract comments from a news site and build them into a dataset. }{}
+        \workDataStart
+            \workDataItem[Dataset]{Dataset of 500k comments on a news site in Bulgarian. }
+            \workDataItem[Purpose]{Fine-tune LLaMa on the dataset mostly for comic effect. }
+        \workDataEnd
+
+\workSectionEnd
+
+
+\center{\tiny{\href{https://github.com/bogdan-ds/CV}{This CV is generated on \today}}
+\end{document}
